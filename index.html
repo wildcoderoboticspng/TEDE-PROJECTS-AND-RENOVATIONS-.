@@ -156,7 +156,6 @@
 <body>
 
 <div class="container">
-    <!-- Logo -->
     <div class="logo-container">
        <a href="https://ibb.co/0jyv9jTZ" target="_blank"><img src="https://i.ibb.co/gMZhWMNw/IMG-20220913-WA0000.jpg" alt="Tede Projects Logo"></a>
     </div>
@@ -232,11 +231,22 @@
 
     <h3>Request A Quote</h3>
     <form action="https://api.web3forms.com/submit" method="POST">
-  <input type="hidden" name="access_key" value="c62eaa0c-24d9-4543-83f2-3b84abb3e5ba">
-  <input type="text" name="name" required>
-  <input type="email" name="email" required>
-  <textarea name="message" required></textarea>
-  <button type="submit">Submit</button>
+        <input type="hidden" name="access_key" value="c62eaa0c-24d9-4543-83f2-3b84abb3e5ba">
+        <input type="hidden" name="_to" value="collentede84@gmail.com">
+
+        <label>Full Name:</label>
+        <input type="text" name="name" required>
+
+        <label>Email Address:</label>
+        <input type="email" name="email" required>
+
+        <label>Service Needed:</label>
+        <input type="text" name="service">
+
+        <label>Project Details:</label>
+        <textarea name="message" rows="5"></textarea>
+
+        <button type="submit" class="btn">Submit Quote</button>
     </form>
 
     <div class="contact-area">
@@ -258,3 +268,5 @@
 
 </body>
 </html>
+
+
