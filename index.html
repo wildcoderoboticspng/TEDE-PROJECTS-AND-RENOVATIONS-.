@@ -190,11 +190,16 @@
             margin-top: 40px;
             padding-bottom: 30px;
         }
-        /* --- Navigation Bar Styles --- */
+        /* Enables smooth scrolling across the entire page */
+html {
+    scroll-behavior: smooth;
+}
+
+/* --- Navigation Bar Layout --- */
 .navbar {
     background-color: #ffffff;
     border-bottom: 3px solid blue;
-    padding: 15px 20px;
+    padding: 12px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -202,6 +207,28 @@
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.btn-top-left {
+    background-color: blue;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 13px;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-top-left:hover {
+    background-color: red;
 }
 
 .navbar-brand {
@@ -230,23 +257,32 @@
     color: red;
 }
 
-/* Adjust layout on mobile devices */
+/* Mobile responsive layout */
 @media (max-width: 600px) {
     .navbar {
         flex-direction: column;
-        gap: 10px;
+        gap: 12px;
         text-align: center;
+    }
+    .navbar-left {
+        flex-direction: row;
+        justify-content: center;
+        width: 100%;
     }
     .nav-links {
         gap: 15px;
     }
 }
 
+
     </style>
 </head>
 <body>
 <nav class="navbar">
-    <a href="#" class="navbar-brand">Tede Projects</a>
+    <div class="navbar-left">
+        <a href="#" class="btn-top-left">Menu</a>
+        <a href="#" class="navbar-brand">Tede Projects</a>
+    </div>
     <div class="nav-links">
         <a href="#about">About</a>
         <a href="#services">Services</a>
@@ -254,6 +290,7 @@
         <a href="#quote">Request Quote</a>
     </div>
 </nav>
+
 
 <div class="container">
     <div class="logo-container">
