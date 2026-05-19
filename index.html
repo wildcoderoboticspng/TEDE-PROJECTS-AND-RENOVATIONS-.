@@ -235,6 +235,27 @@
     object-fit: cover;
     display: block;
 }
+/* --- Logo & Header with Light/Dark Mode Adaptation --- */
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-container img {
+    max-width: 300px;
+    height: auto;
+    background-color: white; /* Default background for light mode */
+    padding: 10px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+/* Automatically detects if the user's device is in Dark Mode */
+@media (prefers-color-scheme: dark) {
+    .logo-container img {
+        background-color: #121212; /* Changes the logo wrapper to black in dark mode */
+    }
+}
 
     </style>
 </head>
@@ -246,7 +267,7 @@
 
 <div class="container">
     <div class="logo-container">
-       <a href="https://ibb.co/0jyv9jTZ" target="_blank"><img src="https://i.ibb.co/gMZhWMNw/IMG-20220913-WA0000.jpg" alt="Tede Projects Logo"></a>
+       <a href="https://ibb.co/b53SDBPS"><img src="https://i.ibb.co/TMTVd8kV/1779159012884.png" alt="1779159012884" border="0"></a>
     </div>
     
     <h4>Transforming Spaces With Professional Renovation Solutions</h4>
