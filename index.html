@@ -1,236 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="color-scheme" content="light">
-<title>Tede Projects & Renovations</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tede Projects & Renovations</title>
+    <style>
+        /* --- General Styles --- */
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            color: #222;
+            line-height: 1.6;
+        }
 
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #fff;
-    color: #222;
-    line-height: 1.6;
-}
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
 
-.container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-}
+        /* --- Logo & Header --- */
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
-/* ================= HERO (UNCHANGED STYLE) ================= */
-.hero {
-    background: linear-gradient(135deg, #0047ff, #ff0000);
-    color: white;
-    text-align: center;
-    padding: 80px 20px;
-}
+        .logo-container img {
+            max-width: 300px;
+            height: auto;
+        }
 
-.hero img {
-    width: 160px;
-    background: transparent;
-    padding: 0;
-    border-radius: 0;
-}
+        h2 {
+            color: red;
+            text-align: center;
+            margin: 40px 0 20px;
+            text-transform: uppercase;
+        }
 
-.hero h1 {
-    margin: 15px 0;
-    text-transform: uppercase;
-}
+        h3 {
+            color: blue;
+            border-left: 5px solid red;
+            padding-left: 10px;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
 
-/* ================= HEADINGS ================= */
-h3 {
-    color: blue;
-    border-left: 5px solid red;
-    padding-left: 10px;
-    text-transform: uppercase;
-}
+        h4 {
+            color: #444;
+            text-align: center;
+            margin-bottom: 40px;
+        }
 
-/* ================= BUTTONS ================= */
-.btn {
-    padding: 12px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    display: inline-block;
-    transition: 0.3s;
-    text-decoration: none;
-}
+        /* --- Project Gallery --- */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
 
-.btn-blue {
-    background: blue;
-    color: white;
-}
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #ddd;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
+        }
 
-.btn-blue:hover {
-    background: red;
-}
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
 
-.btn-whatsapp {
-    background: #25D366;
-    color: white;
-}
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
 
-.btn-whatsapp:hover {
-    background: #128C7E;
-}
+        /* --- Services --- */
+        .services b { color: red; }
+        hr { border: 1px solid red; margin: 30px 0; }
 
-/* TikTok restored */
-.btn-tiktok {
-    background: #010101;
-    color: white;
-    border-left: 3px solid #00f2fe;
-    border-right: 3px solid #fe0979;
-}
+        /* --- Form --- */
+        form {
+            background-color: #f5f5f5;
+            padding: 25px;
+            border: 2px solid blue;
+            border-radius: 10px;
+        }
 
-.btn-tiktok:hover {
-    background: #222;
-}
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 20px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
 
-/* ================= GALLERY ================= */
-.gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 15px;
-}
+        /* --- Buttons --- */
+        .btn {
+            background-color: blue;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            transition: 0.3s;
+            margin: 5px;
+        }
 
-.gallery-item {
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
+        .btn:hover { background-color: red; }
 
-.gallery img {
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-}
+        /* TikTok Custom Styled Button */
+        .btn-tiktok {
+            background-color: #010101;
+            color: white;
+            border-left: 3px solid #00f2fe;
+            border-right: 3px solid #fe0979;
+        }
 
-/* ================= FORM ================= */
-form {
-    background: #f7f7f7;
-    padding: 25px;
-    border-radius: 10px;
-}
+        .btn-tiktok:hover {
+            background-color: #252525;
+        }
 
-input, textarea {
-    width: 100%;
-    padding: 12px;
-    margin: 10px 0 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
+        /* WhatsApp Custom Styled Button */
+        .btn-whatsapp {
+            background-color: #25D366;
+            color: white;
+        }
 
-/* ================= WHATSAPP FLOAT ================= */
-.whatsapp-float {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    width: 60px;
-    height: 60px;
-    background: #25D366;
-    color: white;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    text-decoration: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-}
+        .btn-whatsapp:hover {
+            background-color: #128C7E;
+        }
 
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 20px;
-    font-size: 14px;
-    color: #777;
-}
-</style>
+        .footer {
+            text-align: center;
+            padding: 20px 0 40px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .contact-area {
+            text-align: center;
+            margin-top: 40px;
+            padding-bottom: 30px;
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- HERO ONLY BRANDING (NO BUTTONS HERE) -->
-<section class="hero">
-    <img src="https://i.ibb.co/gMZhWMNw/IMG-20220913-WA0000.jpg" alt="Logo">
-
-    <h1>Tede Projects & Renovations</h1>
-
-    <p>Transforming homes, kitchens, bathrooms and spaces with professional renovation solutions.</p>
-</section>
-
 <div class="container">
-
-<!-- ABOUT -->
-<section>
-    <h3>About Us</h3>
-    <p>
-        Tede Projects is a renovation company focused on modern, clean and reliable workmanship for homes and businesses.
-    </p>
-</section>
-
-<!-- SERVICES -->
-<section>
-    <h3>Our Services</h3>
-    <p><b style="color:red;">Kitchen & Bathroom:</b> Modern renovations and upgrades.</p>
-    <p><b style="color:red;">Tiling & Painting:</b> Clean, professional finishes.</p>
-    <p><b style="color:red;">Ceilings & Paving:</b> Quality installations and repairs.</p>
-</section>
-
-<!-- GALLERY -->
-<section>
-    <h3>Project Gallery</h3>
-
-    <div class="gallery">
-        <div class="gallery-item"><img src="https://i.ibb.co/jvrz94SM/IMG-20240217-183556.jpg"></div>
-        <div class="gallery-item"><img src="https://i.ibb.co/hJRx8wT8/IMG-20231218-120354.jpg"></div>
-        <div class="gallery-item"><img src="https://i.ibb.co/zVKJw5Rr/IMG-20241204-WA0123.jpg"></div>
-        <div class="gallery-item"><img src="https://i.ibb.co/6cwpWVZx/IMG-20241204-WA0125.jpg"></div>
+    <div class="logo-container">
+       <a href="https://ibb.co/0jyv9jTZ" target="_blank"><img src="https://i.ibb.co/gMZhWMNw/IMG-20220913-WA0000.jpg" alt="Tede Projects Logo"></a>
     </div>
-</section>
+    
+    <h4>Transforming Spaces With Professional Renovation Solutions</h4>
 
-<!-- QUOTE -->
-<section>
-    <h3 id="quote">Request A Quote</h3>
+    <h3>About Us</h3>
+    <p><strong>Tede Projects</strong> is a renovation-focused construction company dedicated to transforming homes, offices, and commercial spaces into modern and functional environments. We specialize in high-quality interior upgrades, roofing, tiling, and property improvements.</p>
 
+    <hr>
+
+    <h3>Our Services</h3>
+    <div class="services">
+        <p><b>Kitchen & Bathroom:</b> Stylish and functional remodeling solutions.</p>
+        <p><b>Tiling & Painting:</b> Precision wall and floor finishes.</p>
+        <p><b>Ceilings & Paving:</b> Modern designs and installations.</p>
+    </div>
+
+    <hr>
+
+    <h3>Project Gallery</h3>
+    <div class="gallery">
+        <div class="gallery-item">
+            <a href="https://ibb.co/hRmcx8SW" target="_blank"><img src="https://i.ibb.co/jvrz94SM/IMG-20240217-183556.jpg" alt="Renovation Work 1"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/bMgjdDGd" target="_blank"><img src="https://i.ibb.co/hJRx8wT8/IMG-20231218-120354.jpg" alt="Renovation Work 2"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/b5pJn3BP" target="_blank"><img src="https://i.ibb.co/zVKJw5Rr/IMG-20241204-WA0123.jpg" alt="Renovation Work 3"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/20hLkm6Q" target="_blank"><img src="https://i.ibb.co/6cwpWVZx/IMG-20241204-WA0125.jpg" alt="Renovation Work 4"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/CpYrqw8j" target="_blank"><img src="https://i.ibb.co/HLbJ0K4c/IMG-20241204-WA0127.jpg" alt="Renovation Work 5"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/8L8Xx29c" target="_blank"><img src="https://i.ibb.co/pBXnKZdy/IMG-20230612-161912.jpg" alt="Renovation Work 6"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/GfDJ65FB" target="_blank"><img src="https://i.ibb.co/xKbsk73P/IMG-20230406-140413.jpg" alt="Renovation Work 7"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/9kTft0b7" target="_blank"><img src="https://i.ibb.co/gLTXV8Sx/IMG-20230406-140345.jpg" alt="Renovation Work 8"></a>
+        </div>
+    </div>
+
+    <h2>Tede Projects at Work</h2>
+    
+    <div class="gallery">
+        <div class="gallery-item">
+            <a href="https://ibb.co/h1LtYhhN" target="_blank"><img src="https://i.ibb.co/bRQ8bqqV/IMG-20230726-WA0147.jpg" alt="Work Site 1"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/tpRfRPXV" target="_blank"><img src="https://i.ibb.co/SwSTS7rF/IMG-20240229-141035.jpg" alt="Work Site 2"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/FLkH59NK" target="_blank"><img src="https://i.ibb.co/mVrN9m1G/IMG-20250103-121146.jpg" alt="Work Site 3"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/jv3QQxKz" target="_blank"><img src="https://i.ibb.co/kgqwwrnJ/IMG-20240412-112651-1.jpg" alt="Work Site 4"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/qLd0MR5t" target="_blank"><img src="https://i.ibb.co/TDkKBHLV/IMG-20240412-104311-1.jpg" alt="Work Site 5"></a>
+        </div>
+        <div class="gallery-item">
+            <a href="https://ibb.co/KxTRmn2V" target="_blank"><img src="https://i.ibb.co/SwFWJStV/IMG-20240412-162532-1.jpg" alt="Work Site 6"></a>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3>Request A Quote</h3>
     <form action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="c62eaa0c-24d9-4543-83f2-3b84abb3e5ba">
+        <input type="hidden" name="_to" value="collentede84@gmail.com">
 
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="email" name="email" placeholder="Email Address" required>
-        <input type="text" name="service" placeholder="Service Needed">
+        <label>Full Name:</label>
+        <input type="text" name="name" required>
 
-        <textarea name="message" placeholder="Project Details"></textarea>
+        <label>Email Address:</label>
+        <input type="email" name="email" required>
 
-        <button class="btn btn-blue" type="submit">Submit Quote</button>
+        <label>Service Needed:</label>
+        <input type="text" name="service">
+
+        <label>Project Details:</label>
+        <textarea name="message" rows="5"></textarea>
+
+        <button type="submit" class="btn">Submit Quote</button>
     </form>
-</section>
 
-<!-- CONTACT (ALL BUTTONS HERE NOW) -->
-<section>
-    <h3>Contact Us</h3>
+    <div class="contact-area">
+        <h3>Contact Us</h3>
+        <p><strong>Cell:</strong> +27 84 430 9102<br>
+        <strong>Email:</strong> collentede84@gmail.com</p>
+        <br>
+        <a href="tel:+27844309102" class="btn">Call Now</a>
+        <a href="https://wa.me/27844309102" target="_blank" class="btn btn-whatsapp">WhatsApp Us</a>
+        <a href="https://vm.tiktok.com/ZS9YNPEKWo9TF-N1x8Q/" target="_blank" class="btn btn-tiktok">Watch Our Work On TikTok</a>
+    </div>
 
-    <p><b>Phone:</b> +27 84 430 9102</p>
-    <p><b>Email:</b> collentede84@gmail.com</p>
-    <p><b>Location:</b> 23 Texas Crescent, Cosmo City, Randburg</p>
+    <hr>
 
-    <a class="btn btn-blue" href="tel:+27844309102">Call</a>
-    <a class="btn btn-whatsapp" href="https://wa.me/27844309102" target="_blank">WhatsApp</a>
-    <a class="btn btn-tiktok" href="https://vm.tiktok.com/ZS9YNPEKWo9TF-N1x8Q/" target="_blank">TikTok</a>
-</section>
-
+    <div class="footer">
+        <p>&copy; 2026 Tede Projects & Renovations. All Rights Reserved.</p>
+    </div>
 </div>
-
-<!-- FLOATING WHATSAPP -->
-<a class="whatsapp-float" href="https://wa.me/27844309102" target="_blank">💬</a>
-
-<footer>
-© 2026 Tede Projects & Renovations
-</footer>
 
 </body>
 </html>
+
