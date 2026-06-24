@@ -3,239 +3,352 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tede Projects & Renovations</title>
+    <title>Tede Projects & Renovations | Professional Home Renovations</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* --- General Styles --- */
-        body {
-            background-color: white;
-            font-family: Arial, sans-serif;
+        /* --- Modern Design System Variables --- */
+        :root {
+            --bg-primary: #0b0f19;       /* Deep Luxury Slate Black */
+            --bg-secondary: #161b26;     /* Elevated Element Background */
+            --text-main: #f3f4f6;        /* Crisp Off-White Text */
+            --text-muted: #9ca3af;       /* Mid-tone Gray for Body Text */
+            --accent-blue: #2563eb;      /* Clean Electric Premium Blue */
+            --accent-glow: #3b82f6;      /* High-contrast Hover State */
+            --border-color: #242b3d;     /* Subtle Structural Borders */
+            --border-radius: 12px;
+            --transition-speed: 0.3s;
+        }
+
+        /* --- Reset & Base Layout --- */
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 20px;
-            color: #222;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
             line-height: 1.6;
+            padding: 0;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 1100px;
             margin: 0 auto;
+            padding: 40px 20px;
         }
 
-        /* --- Logo & Header --- */
-        .logo-container {
+        /* --- Header Infrastructure (White Background for Logo Blending) --- */
+        header {
             text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .logo-container img {
-            max-width: 300px;
-            height: auto;
-        }
-
-        h2 {
-            color: blue;
-            border-left: 5px solid red;
-            padding-left: 10px;
-            margin-top: 30px;
-            text-transform: uppercase;
-        }
-
-        h3 {
-            color: blue;
-            border-left: 5px solid red;
-            padding-left: 10px;
-            margin-top: 30px;
-            text-transform: uppercase;
-        }
-
-        h4 {
-            color: #444;
-            text-align: center;
+            padding: 40px 20px;
+            background-color: #ffffff;   /* Perfect blend for white logo container */
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border-color);
             margin-bottom: 40px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* --- Project Gallery --- */
+        /* --- Clean Section Typographic Hierarchy --- */
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2.section-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        h2.section-title::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 24px;
+            background-color: var(--accent-blue);
+            border-radius: 2px;
+        }
+
+        p.section-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            max-width: 750px;
+            margin-bottom: 30px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: var(--border-color);
+            margin: 50px 0;
+        }
+
+        /* --- Scroll-Animated Grid System --- */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            overflow-x: hidden;
+            padding: 10px 0;
+        }
+
+        .service-card {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            opacity: 0;
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), 
+                        opacity 0.6s ease-out, 
+                        border-color var(--transition-speed);
+        }
+
+        .service-card.slide-left {
+            transform: translateX(-60px);
+        }
+
+        .service-card.slide-right {
+            transform: translateX(60px);
+        }
+
+        .service-card.reveal-active {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .service-card.reveal-active:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-blue);
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* --- Features & Trust Grid --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            background: linear-gradient(145deg, var(--bg-secondary) 0%, rgba(22,27,38,0.5) 100%);
+            border-left: 4px solid var(--accent-blue);
+            padding: 25px;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .feature-item h4 {
+            color: var(--text-main);
+            font-size: 1.15rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .gallery-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* --- Grid System - Premium Visual Gallery (Fixed Image Stretching) --- */
         .gallery {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
         }
 
         .gallery-item {
-            border-radius: 8px;
+            position: relative;
+            border-radius: var(--border-radius);
             overflow: hidden;
-            border: 1px solid #ddd;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.2s;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+            aspect-ratio: 4 / 3;
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
         }
 
         .gallery-item:hover {
             transform: scale(1.02);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+            border-color: var(--accent-glow);
         }
 
         .gallery-item img {
             width: 100%;
-            height: 300px;
+            height: 100%;
             object-fit: cover;
+            object-position: center; /* Guarantees clean centering context for raw photos */
             display: block;
         }
 
-        /* --- Services --- */
-        .services b { color: red; }
-        hr { border: 1px solid red; margin: 30px 0; }
-
-        /* --- Form Styles --- */
-        form {
-            background-color: #f9f9f9;
-            padding: 30px;
-            border: 2px solid blue;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        /* --- Secure Premium Quote Form Infrastructure --- */
+        .form-wrapper {
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            max-width: 700px;
+            margin: 0 auto;
         }
 
         form label {
             display: block;
-            font-weight: bold;
-            color: #333;
-            margin-top: 15px;
-            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
         }
 
         input, textarea {
             width: 100%;
             padding: 14px;
-            margin-bottom: 5px;
-            border: 1px solid #ccc;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-primary);
+            color: var(--text-main);
             border-radius: 6px;
-            box-sizing: border-box;
             font-size: 15px;
-            background-color: #fff;
-            transition: border-color 0.3s;
+            font-family: inherit;
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
         }
 
         input:focus, textarea:focus {
-            border-color: blue;
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
             outline: none;
         }
 
-        /* --- Buttons --- */
+        /* --- Fully Transformed Button System --- */
         .btn {
-            background-color: blue;
-            color: white;
-            padding: 15px 30px;
+            font-family: inherit;
+            font-weight: 600;
+            font-size: 1rem;
+            padding: 14px 28px;
+            border-radius: 6px;
             border: none;
-            border-radius: 5px;
-            font-size: 16px;
             cursor: pointer;
             text-decoration: none;
-            display: inline-block;
-            transition: 0.3s;
-            margin: 5px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform var(--transition-speed), background var(--transition-speed);
         }
 
-        .btn:hover { background-color: red; }
-
-        /* Nice Blue Form Submit Button */
-        .btn-submit {
-            background: linear-gradient(135deg, #0055ff, blue);
+        .btn-primary {
+            background-color: var(--accent-blue);
             color: white;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 6px;
-            box-shadow: 0 4px 10px rgba(0, 0, 255, 0.2);
             width: 100%;
-            margin-top: 20px;
-            padding: 16px;
-            border: none;
-            cursor: pointer;
         }
 
-        .btn-submit:hover {
-            background: linear-gradient(135deg, blue, #0022cc);
-            box-shadow: 0 6px 14px rgba(0, 0, 255, 0.3);
-            transform: translateY(-1px);
+        .btn-primary:hover {
+            background-color: var(--accent-glow);
         }
 
-        /* TikTok Custom Styled Button */
+        .btn-primary:disabled {
+            background-color: #1e293b;
+            color: #64748b;
+            cursor: not-allowed;
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--border-color);
+        }
+
         .btn-tiktok {
-            background-color: #010101;
-            color: white;
-            border-left: 3px solid #00f2fe;
-            border-right: 3px solid #fe0979;
+            background-color: #000000;
+            color: #fff;
+            border: 1px solid #333;
         }
 
         .btn-tiktok:hover {
-            background-color: #252525;
+            background-color: #111;
         }
 
-        /* WhatsApp Custom Styled Button */
         .btn-whatsapp {
             background-color: #25D366;
             color: white;
         }
 
         .btn-whatsapp:hover {
-            background-color: #128C7E;
+            background-color: #1fc15b;
         }
 
-        /* --- NEW FLOATING WHATSAPP BUTTON --- */
+        /* --- Floating CTA Component --- */
         .btn-whatsapp-float {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             background-color: #25D366;
             color: white;
-            padding: 15px 25px;
+            padding: 16px 24px;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            font-weight: 600;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
             z-index: 9999;
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-size: 16px;
+            gap: 10px;
+            font-size: 1rem;
             transition: transform 0.2s, background-color 0.3s;
         }
 
         .btn-whatsapp-float:hover {
-            background-color: #128C7E;
-            transform: scale(1.05);
+            background-color: #1fc15b;
+            transform: translateY(-2px);
         }
 
-        .footer {
+        /* --- Unified Footer Grid --- */
+        .contact-section {
             text-align: center;
-            padding: 20px 0 40px;
-            font-size: 14px;
-            color: #777;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .contact-area {
-            text-align: center;
-            margin-top: 40px;
-            padding-bottom: 30px;
+        .contact-buttons-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-top: 25px;
         }
-        .gallery-item, .gallery-work-item {
-    border-radius: 8px;
-    overflow: hidden;
-    border: 2px solid red; /* Changes all borders to blue */
-    box-shadow: 0 4px 8px rgba(0, 0, 255, 0.1);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.gallery-item:hover, .gallery-work-item:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 12px rgba(0, 0, 255, 0.3);
-}
-
-.gallery-item img, .gallery-work-item img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    display: block;
-}
-
     </style>
 </head>
 <body>
@@ -245,117 +358,210 @@
 </a>
 
 <div class="container">
-    <div class="logo-container">
-       <a href="https://ibb.co/b53SDBPS"><img src="https://i.ibb.co/TMTVd8kV/1779159012884.png" alt="1779159012884" border="0"></a>
-    </div>
     
-    <h4>Transforming Spaces With Professional Renovation Solutions</h4>
+    <header>
+        <div style="display: block; margin-bottom: 20px;">
+           <a href="https://ibb.co/b53SDBPS" target="_blank">
+               <img src="https://i.ibb.co/TMTVd8kV/1779159012884.png" alt="Tede Projects Logo" border="0" style="max-width: 240px; height: auto;">
+           </a>
+        </div>
+        
+        <h1 style="color: #0f172a; font-size: 1.4rem; font-weight: 700; letter-spacing: -0.5px; text-transform: uppercase; max-width: 700px; margin: 0 auto; line-height: 1.4; text-align: center;">
+            Transforming Spaces With Professional Renovation Solutions
+        </h1>
+    </header>
 
-    <h3>About Us</h3>
-    <p><strong>Tede Projects</strong> is a renovation-focused construction company dedicated to transforming homes, offices, and commercial spaces into modern and functional environments. We specialize in high-quality interior upgrades, roofing, tiling, and property improvements.</p>
+    <section>
+        <h2 class="section-title">About Us</h2>
+        <p class="section-desc"><strong>Tede Projects</strong> is a professional home and office renovation company. We specialize in making your spaces modern, beautiful, and valuable. From minor interior updates to large property improvements, we handle every job with clean, expert workmanship.</p>
+    </section>
+
+    <section>
+        <h2 class="section-title">Why Choose Tede Projects</h2>
+        <p class="section-desc">We make renovations easy and stress-free. We work cleanly, show up on time, and make sure your project is built to last.</p>
+        
+        <div class="features-grid">
+            <div class="feature-item">
+                <h4>Quality Work</h4>
+                <p>Every tile we lay and every wall we paint goes through strict checks to ensure great results.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Reliable Budgets & Timelines</h4>
+                <p>No hidden fees. No endless delays. We give you clear prices and finish the work on time.</p>
+            </div>
+            <div class="feature-item">
+                <h4>Local Experts</h4>
+                <p>We use the best local materials that match South African homes and structural standards.</p>
+            </div>
+        </div>
+    </section>
 
     <hr>
 
-    <h3>Our Services</h3>
-    <div class="services">
-        <p><b>Kitchen & Bathroom:</b> Stylish and functional remodeling solutions.</p>
-        <p><b>Tiling & Painting:</b> Precision wall and floor finishes.</p>
-        <p><b>Ceilings & Paving:</b> Modern designs and installations.</p>
-    </div>
-
-    <hr>
-    
-
-    <h3>Project Gallery</h3>
-    <div class="gallery">
-        <div class="gallery-item">
-            <a href="https://ibb.co/hRmcx8SW" target="_blank"><img src="https://i.ibb.co/jvrz94SM/IMG-20240217-183556.jpg" alt="Renovation Work 1"></a>
+    <section>
+        <h2 class="section-title">Our Services</h2>
+        <p class="section-desc">We offer a wide range of expert building and renovation services for your property:</p>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Tiling</h3>
+                <p>Perfect wall and floor tiling. We install ceramic, porcelain, and natural stone tiles with neat lines and strong finishes.</p>
+            </div>
+            <div class="service-card">
+                <h3>Painting</h3>
+                <p>Neat interior and exterior painting. We prepare surfaces properly so your paint looks fresh and lasts for years.</p>
+            </div>
+            <div class="service-card">
+                <h3>Ceilings</h3>
+                <p>Modern ceiling board installations, structural level repairs, and beautiful drop-ceilings for modern rooms.</p>
+            </div>
+            <div class="service-card">
+                <h3>Rhinoliting</h3>
+                <p>Professional plastering that gives your walls and ceilings a glass-smooth surface, completely ready for paint.</p>
+            </div>
+            <div class="service-card">
+                <h3>Paving</h3>
+                <p>Strong paving installations for driveways, walkways, and courtyards, built with proper water drainage in mind.</p>
+            </div>
+            <div class="service-card">
+                <h3>Dry Walling</h3>
+                <p>Quick and neat interior room divisions, office partitioning, and smooth temporary wall setups.</p>
+            </div>
+            <div class="service-card">
+                <h3>Wooden Floors</h3>
+                <p>Premium laminate and solid wood floor installation, ensuring perfectly level surfaces for high-traffic areas.</p>
+            </div>
         </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/bMgjdDGd" target="_blank"><img src="https://i.ibb.co/hJRx8wT8/IMG-20231218-120354.jpg" alt="Renovation Work 2"></a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/b5pJn3BP" target="_blank"><img src="https://i.ibb.co/zVKJw5Rr/IMG-20241204-WA0123.jpg" alt="Renovation Work 3"></a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/20hLkm6Q" target="_blank"><img src="https://i.ibb.co/6cwpWVZx/IMG-20241204-WA0125.jpg" alt="Renovation Work 4"></a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/CpYrqw8j" target="_blank"><img src="https://i.ibb.co/HLbJ0K4c/IMG-20241204-WA0127.jpg" alt="Renovation Work 5"></a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/8L8Xx29c" target="_blank"><img src="https://i.ibb.co/pBXnKZdy/IMG-20230612-161912.jpg" alt="Renovation Work 6"></a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/GfDJ65FB" target="_blank"><img src="https://i.ibb.co/xKbsk73P/IMG-20230406-140413.jpg" alt="Renovation Work 7"></a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/9kTft0b7" target="_blank"><img src="https://i.ibb.co/gLTXV8Sx/IMG-20230406-140345.jpg" alt="Renovation Work 8"></a>
-        </div>
-    </div>
-     <hr>
-    <h2>Tede Projects at Work</h2>
-    
-    <div class="gallery">
-        <div class="gallery-item">
-            <a href="https://ibb.co/h1LtYhhN" target="_blank"><img src="https://i.ibb.co/bRQ8bqqV/IMG-20230726-WA0147.jpg" alt="Work Site 1"></a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/tpRfRPXV" target="_blank"><img src="https://i.ibb.co/SwSTS7rF/IMG-20240229-141035.jpg" alt="Work Site 2"></a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/FLkH59NK" target="_blank"><img src="https://i.ibb.co/mVrN9m1G/IMG-20250103-121146.jpg" alt="Work Site 3"></a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/jv3QQxKz" target="_blank"><img src="https://i.ibb.co/kgqwwrnJ/IMG-20240412-112651-1.jpg" alt="Work Site 4"></a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/qLd0MR5t" target="_blank"><img src="https://i.ibb.co/TDkKBHLV/IMG-20240412-104311-1.jpg" alt="Work Site 5"></a>
-        </div>
-        <div class="gallery-item">
-            <a href="https://ibb.co/KxTRmn2V" target="_blank"><img src="https://i.ibb.co/SwFWJStV/IMG-20240412-162532-1.jpg" alt="Work Site 6"></a>
-        </div>
-    </div>
+    </section>
 
     <hr>
 
-    <h3>Request A Quote</h3>
-    <form action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="c62eaa0c-24d9-4543-83f2-3b84abb3e5ba">
-        <input type="hidden" name="_to" value="collentede84@gmail.com">
+    <section>
+        <h2 class="section-title">Completed Work</h2>
+        <div class="gallery">
+            <div class="gallery-item"><a href="https://ibb.co/hRmcx8SW" target="_blank"><img src="https://i.ibb.co/jvrz94SM/IMG-20240217-183556.jpg" alt="Renovation Work"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/bMgjdDGd" target="_blank"><img src="https://i.ibb.co/hJRx8wT8/IMG-20231218-120354.jpg" alt="Renovation Work"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/b5pJn3BP" target="_blank"><img src="https://i.ibb.co/zVKJw5Rr/IMG-20241204-WA0123.jpg" alt="Tiling Work"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/20hLkm6Q" target="_blank"><img src="https://i.ibb.co/6cwpWVZx/IMG-20241204-WA0125.jpg" alt="Renovation Work"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/CpYrqw8j" target="_blank"><img src="https://i.ibb.co/HLbJ0K4c/IMG-20241204-WA0127.jpg" alt="Interior Work"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/8L8Xx29c" target="_blank"><img src="https://i.ibb.co/pBXnKZdy/IMG-20230612-161912.jpg" alt="Property Upgrades"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/GfDJ65FB" target="_blank"><img src="https://i.ibb.co/xKbsk73P/IMG-20230406-140413.jpg" alt="Remodel Work"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/9kTft0b7" target="_blank"><img src="https://i.ibb.co/gLTXV8Sx/IMG-20230406-140345.jpg" alt="Complete Renovation"></a></div>
+        </div>
+        <p class="gallery-caption">Real, unedited photos of projects we have delivered for our clients.</p>
+    </section>
 
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name" placeholder="e.g. John Doe" required>
-
-        <label for="email">Email Address:</label>
-        <input type="email" id="email" name="email" placeholder="e.g. john@example.com" required>
-
-        <label for="service">Service Needed:</label>
-        <input type="text" id="service" name="service" placeholder="e.g. Kitchen Remodeling, Tiling, Painting">
-
-        <label for="message">Project Details:</label>
-        <textarea id="message" name="message" rows="5" placeholder="Tell us about your project timeline, measurements, or specific requests..." required></textarea>
-
-        <button type="submit" class="btn btn-submit">Submit Quote Request</button>
-    </form>
-
-    <div class="contact-area">
-        <h3>Contact Us</h3>
-        <p><strong>Cell:</strong> +27 84 430 9102<br>
-        <strong>Email:</strong> collentede84@gmail.com</p>
-        <br>
-        <a href="tel:+27844309102" class="btn">Call Now</a>
-        <a href="https://wa.me/27844309102" target="_blank" class="btn btn-whatsapp">WhatsApp Us</a>
-        <a href="https://vm.tiktok.com/ZS9YNPEKWo9TF-N1x8Q/" target="_blank" class="btn btn-tiktok">Watch Our Work On TikTok</a>
-    </div>
+    <section>
+        <h2 class="section-title">Our Team At Work</h2>
+        <div class="gallery">
+            <div class="gallery-item"><a href="https://ibb.co/h1LtYhhN" target="_blank"><img src="https://i.ibb.co/bRQ8bqqV/IMG-20230726-WA0147.jpg" alt="Active Work Site"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/tpRfRPXV" target="_blank"><img src="https://i.ibb.co/SwSTS7rF/IMG-20240229-141035.jpg" alt="On-Site Development"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/FLkH59NK" target="_blank"><img src="https://i.ibb.co/mVrN9m1G/IMG-20250103-121146.jpg" alt="Live Renovation"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/jv3QQxKz" target="_blank"><img src="https://i.ibb.co/kgqwwrnJ/IMG-20240412-112651-1.jpg" alt="On-Site Processing"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/qLd0MR5t" target="_blank"><img src="https://i.ibb.co/TDkKBHLV/IMG-20240412-104311-1.jpg" alt="Structural Work Phase"></a></div>
+            <div class="gallery-item"><a href="https://ibb.co/KxTRmn2V" target="_blank"><img src="https://i.ibb.co/SwFWJStV/IMG-20240412-162532-1.jpg" alt="Final Handover Adjustments"></a></div>
+        </div>
+    </section>
 
     <hr>
 
-    <div class="footer">
-        <p>&copy; 2026 Tede Projects & Renovations. All Rights Reserved.</p>
+    <section>
+        <div class="form-wrapper">
+            <h2 class="section-title">Get A Free Quote</h2>
+            <form id="quoteForm" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="c62eaa0c-24d9-4543-83f2-3b84abb3e5ba">
+                <input type="hidden" name="_to" value="collentede84@gmail.com">
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" placeholder="John Doe" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="service">Service You Need</label>
+                    <input type="text" id="service" name="service" placeholder="e.g. Kitchen Tiling, Wall Painting">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Project Details</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us about your project size, ideas, or timeline..." required></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn" class="btn btn-primary">Submit Quote Request</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <h2 class="section-title">Contact Us Directly</h2>
+        <p class="section-desc"><strong>Cell:</strong> +27 84 430 9102<br><strong>Email:</strong> collentede84@gmail.com</p>
+        
+        <div class="contact-buttons-row">
+            <a href="tel:+27844309102" class="btn btn-outline">Call Us Now</a>
+            <a href="https://wa.me/27844309102" target="_blank" class="btn btn-whatsapp">Chat on WhatsApp</a>
+            <a href="https://vm.tiktok.com/ZS9YNPEKWo9TF-N1x8Q/" target="_blank" class="btn btn-tiktok">Watch Us on TikTok</a>
+        </div>
+    </section>
+
+    <hr>
+
+    <div class="footer" style="text-align: center; padding-top: 40px; padding-bottom: 20px;">
+        <div style="display: block; margin-bottom: 25px;">
+           <a href="https://ibb.co/b53SDBPS" target="_blank">
+               <img src="https://i.ibb.co/TMTVd8kV/1779159012884.png" alt="Tede Projects Logo" border="0" style="max-width: 220px; height: auto;">
+           </a>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 Tede Projects & Renovations. Website built by Wild Code Developers.</p>
     </div>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // --- Mechanism 1: Scroll Animations ---
+        const cards = document.querySelectorAll('.service-card');
+        
+        cards.forEach((card, index) => {
+            if (index % 2 === 0) {
+                card.classList.add('slide-left');  
+            } else {
+                card.classList.add('slide-right'); 
+            }
+        });
+
+        const observerOptions = {
+            root: null,
+            threshold: 0.15,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('reveal-active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        cards.forEach(card => revealObserver.observe(card));
+
+        // --- Mechanism 2: Form Abuse Prevention & UX Feedback ---
+        const quoteForm = document.getElementById('quoteForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        if (quoteForm && submitBtn) {
+            quoteForm.addEventListener('submit', () => {
+                submitBtn.innerText = "Sending Request...";
+                submitBtn.disabled = true;
+            });
+        }
+    });
+</script>
+
 </body>
 </html>
-
