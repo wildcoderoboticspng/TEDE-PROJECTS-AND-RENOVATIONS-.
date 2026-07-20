@@ -352,7 +352,7 @@
         .service-meta {
             display: flex;
             gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 5px;
             flex-wrap: wrap;
         }
 
@@ -364,40 +364,6 @@
             border-radius: 4px;
             font-weight: 600;
             border: 1px solid var(--border-color);
-        }
-
-        .meta-tag.price {
-            color: #60a5fa;
-            background: rgba(37, 99, 235, 0.15);
-        }
-
-        .accordion-btn {
-            background: none;
-            border: none;
-            color: var(--accent-blue);
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            padding: 0;
-        }
-
-        .accordion-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 10px;
-            border-top: 1px solid transparent;
-        }
-
-        .accordion-content.open {
-            max-height: 120px;
-            border-top-color: var(--border-color);
-            padding-top: 10px;
         }
 
         /* --- Features & Trust Grid --- */
@@ -833,12 +799,7 @@
                 <h3>Tiling</h3>
                 <p>Perfect wall and floor tiling combining precision design and quality materials for neat lines and strong finishes.</p>
                 <div class="service-meta">
-                    <span class="meta-tag price">from R150/m²</span>
                     <span class="meta-tag">1 - 5 days</span>
-                </div>
-                <button class="accordion-btn">What's included <i class="fas fa-chevron-down"></i></button>
-                <div class="accordion-content">
-                    Surface preparation, professional tile leveling, precision cutting, grouting, and thorough post-installation site cleanup.
                 </div>
             </div>
 
@@ -847,12 +808,7 @@
                 <h3>Painting</h3>
                 <p>Neat interior and exterior painting services executed with high quality paints to elevate your home design.</p>
                 <div class="service-meta">
-                    <span class="meta-tag price">from R25/m²</span>
                     <span class="meta-tag">2 - 7 days</span>
-                </div>
-                <button class="accordion-btn">What's included <i class="fas fa-chevron-down"></i></button>
-                <div class="accordion-content">
-                    Crack filling, sanding, primer application, and two premium coats of weather-resistant paint with complete floor protection.
                 </div>
             </div>
 
@@ -861,12 +817,7 @@
                 <h3>Ceilings</h3>
                 <p>Modern ceiling board installations, structural level repairs, and custom drop-ceilings for advanced room design.</p>
                 <div class="service-meta">
-                    <span class="meta-tag price">from R120/m²</span>
                     <span class="meta-tag">1 - 4 days</span>
-                </div>
-                <button class="accordion-btn">What's included <i class="fas fa-chevron-down"></i></button>
-                <div class="accordion-content">
-                    Timber brandering framework, secure ceiling board suspension, tape-and-jointing, and smooth sanding ready for paint.
                 </div>
             </div>
 
@@ -875,12 +826,7 @@
                 <h3>Rhinoliting</h3>
                 <p>Professional plastering delivering glass-smooth surfaces designed to optimize your renovation finish.</p>
                 <div class="service-meta">
-                    <span class="meta-tag price">from R80/m²</span>
                     <span class="meta-tag">1 - 3 days</span>
-                </div>
-                <button class="accordion-btn">What's included <i class="fas fa-chevron-down"></i></button>
-                <div class="accordion-content">
-                    Plaster bonding agent application, precision skim coat application, corner bead alignment, and ultra-smooth finishing.
                 </div>
             </div>
 
@@ -889,12 +835,7 @@
                 <h3>Paving</h3>
                 <p>Strong paving installations for driveways and courtyards, marrying exterior durability with aesthetic design.</p>
                 <div class="service-meta">
-                    <span class="meta-tag price">from R200/m²</span>
                     <span class="meta-tag">2 - 6 days</span>
-                </div>
-                <button class="accordion-btn">What's included <i class="fas fa-chevron-down"></i></button>
-                <div class="accordion-content">
-                    Earth excavation, sub-base compaction, edge-beam installation, paver laying, and joint-filling river sand compaction.
                 </div>
             </div>
 
@@ -903,12 +844,7 @@
                 <h3>Dry Walling</h3>
                 <p>Quick and neat interior room divisions and office partitioning tailored to flexible spatial design.</p>
                 <div class="service-meta">
-                    <span class="meta-tag price">from R180/m²</span>
                     <span class="meta-tag">1 - 3 days</span>
-                </div>
-                <button class="accordion-btn">What's included <i class="fas fa-chevron-down"></i></button>
-                <div class="accordion-content">
-                    Galvanized steel stud framing, acoustic insulation fitting, plasterboard screw-fixing, and joint plastering.
                 </div>
             </div>
 
@@ -917,12 +853,7 @@
                 <h3>Wooden Floors</h3>
                 <p>Premium laminate and solid wood floor installations engineered for lasting quality and superior room style.</p>
                 <div class="service-meta">
-                    <span class="meta-tag price">from R250/m²</span>
                     <span class="meta-tag">1 - 4 days</span>
-                </div>
-                <button class="accordion-btn">What's included <i class="fas fa-chevron-down"></i></button>
-                <div class="accordion-content">
-                    Underlay moisture barrier laying, precision click-lock installation, expansion gap spacing, and skirting board attachment.
                 </div>
             </div>
         </div>
@@ -1157,20 +1088,6 @@
         if(statsSection) {
             statsObserver.observe(statsSection);
         }
-
-        const accordionBtns = document.querySelectorAll('.accordion-btn');
-        accordionBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const content = btn.nextElementSibling;
-                const icon = btn.querySelector('i');
-                content.classList.toggle('open');
-                if(content.classList.contains('open')) {
-                    icon.className = 'fas fa-chevron-up';
-                } else {
-                    icon.className = 'fas fa-chevron-down';
-                }
-            });
-        });
 
         const track = document.getElementById('testimonialTrack');
         const slides = Array.from(track.children);
