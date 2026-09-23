@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,21 +14,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* --- Modern Design System Variables --- */
+        /* --- Sunset Dark / Light Dynamic Design System --- */
+        
+        /* Sunset Dark Theme (Default) */
+        [data-theme="dark"] {
+            --bg-primary: #0d0f18;          /* Deep Dusky Night */
+            --bg-secondary: #161926;        /* Twilight Card Surface */
+            --bg-card: #1c2033;             /* Elevated Twilight Surface */
+            --text-main: #f8fafc;           /* Bright Crisp Text */
+            --text-muted: #a0aec0;          /* Muted Dusky Slate Text */
+            --accent-primary: #ff6b4a;      /* Sunset Coral Primary */
+            --accent-glow: #f97316;         /* Golden Sunset Orange */
+            --accent-gradient: linear-gradient(135deg, #ff6b4a 0%, #f59e0b 100%);
+            --border-color: rgba(255, 255, 255, 0.1); /* Subtle Glass Borders */
+            --nav-bg: rgba(22, 25, 38, 0.85);
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            --tag-bg: #24293e;
+            --overlay-gradient: linear-gradient(180deg, rgba(13, 15, 24, 0.85) 0%, rgba(13, 15, 24, 0.96) 100%);
+        }
+
+        /* Sunset Light Theme */
+        [data-theme="light"] {
+            --bg-primary: #fff8f5;          /* Warm Sunset Soft Cream */
+            --bg-secondary: #ffffff;        /* Pure White Card Background */
+            --bg-card: #ffffff;             /* High Contrast Card BG */
+            --text-main: #1e1b2e;           /* Deep Twilight Charcoal */
+            --text-muted: #64748b;          /* Soft Warm Slate Text */
+            --accent-primary: #e11d48;      /* Deep Sunset Rose Coral */
+            --accent-glow: #ea580c;         /* Warm Sunburst Orange */
+            --accent-gradient: linear-gradient(135deg, #e11d48 0%, #d97706 100%);
+            --border-color: #f1e1d9;        /* Warm Crisp Light Borders */
+            --nav-bg: rgba(255, 255, 255, 0.9);
+            --shadow-color: rgba(225, 29, 72, 0.08);
+            --tag-bg: #fff1f2;
+            --overlay-gradient: linear-gradient(180deg, rgba(255, 248, 245, 0.85) 0%, rgba(255, 248, 245, 0.96) 100%);
+        }
+
+        /* --- Global Reset & Base Layout --- */
         :root {
-            --bg-primary: #0b0f19;       /* Deep Luxury Slate Black */
-            --bg-secondary: #161b26;     /* Elevated Element Background */
-            --bg-card: #1c2230;          /* High Contrast Card BG */
-            --text-main: #f3f4f6;        /* Crisp Off-White Text */
-            --text-muted: #9ca3af;       /* Mid-tone Gray for Body Text */
-            --accent-blue: #2563eb;      /* Clean Electric Premium Blue */
-            --accent-glow: #3b82f6;      /* High-contrast Hover State */
-            --border-color: #242b3d;     /* Subtle Structural Borders */
             --border-radius: 12px;
             --transition-speed: 0.3s;
         }
 
-        /* --- Reset & Base Layout --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -46,6 +73,15 @@
             line-height: 1.6;
             padding: 0;
             overflow-x: hidden;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            
+            /* Sunset House Structural Backdrop Overlay */
+            background-image: 
+                var(--overlay-gradient),
+                url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
         }
 
         .container {
@@ -56,18 +92,20 @@
 
         /* --- Top Navigation Bar --- */
         .top-nav {
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(12px);
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 12px 24px;
             margin-bottom: 30px;
             border-radius: var(--border-radius);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 4px 20px var(--shadow-color);
+            border: 1px solid var(--border-color);
             position: sticky;
             top: 20px;
             z-index: 1000;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
         }
 
         .brand-logo {
@@ -82,22 +120,49 @@
             display: block;
         }
 
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Sunset Theme Toggle Button */
+        .theme-toggle-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--accent-primary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            transition: all var(--transition-speed);
+        }
+
+        .theme-toggle-btn:hover {
+            transform: rotate(15deg) scale(1.05);
+            border-color: var(--accent-primary);
+        }
+
         .menu-toggle {
             font-size: 1.35rem;
             cursor: pointer;
             background: none;
             border: none;
-            color: #0f172a;
+            color: var(--text-main);
             padding: 8px;
             border-radius: 6px;
             transition: background-color var(--transition-speed);
         }
 
         .menu-toggle:hover {
-            background-color: #f1f5f9;
+            background-color: var(--border-color);
         }
 
-        /* --- Mobile Menu Drawer Overlay --- */
+        /* --- Mobile Menu Drawer --- */
         .drawer-overlay {
             position: fixed;
             top: 0;
@@ -131,7 +196,7 @@
             flex-direction: column;
             padding: 30px;
             transition: right 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            box-shadow: -10px 0 30px var(--shadow-color);
         }
 
         .mobile-drawer.open {
@@ -176,24 +241,36 @@
         }
 
         .drawer-links a:hover {
-            color: var(--accent-blue);
+            color: var(--accent-primary);
         }
 
-        /* --- Header & Hero Infrastructure --- */
+        /* --- Header & Hero Section --- */
         header {
             text-align: center;
-            padding: 60px 24px;
-            background: radial-gradient(circle at center, #1e293b 0%, var(--bg-primary) 100%);
+            padding: 90px 24px;
+            background: var(--bg-secondary);
             border-radius: var(--border-radius);
             border: 1px solid var(--border-color);
             margin-bottom: 40px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 10px 30px var(--shadow-color);
             position: relative;
             overflow: hidden;
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 107, 74, 0.08) 0%, transparent 60%);
+            pointer-events: none;
         }
 
         .hero-title {
-            font-size: 2.5rem;
+            font-size: 2.75rem;
             font-weight: 800;
             color: var(--text-main);
             margin-bottom: 18px;
@@ -202,18 +279,21 @@
         }
 
         .hero-title span {
-            color: var(--accent-blue);
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             display: block;
             min-height: 1.25em;
         }
 
         .header-slogan {
             color: var(--text-muted); 
-            font-size: 1.1rem; 
-            max-width: 650px; 
+            font-size: 1.15rem; 
+            max-width: 680px; 
             margin: 0 auto 32px auto; 
             line-height: 1.6; 
             text-align: center;
+            font-weight: 500;
         }
 
         .hero-buttons {
@@ -242,7 +322,7 @@
             60% {transform: translateY(-4px);}
         }
 
-        /* --- Reveal Animation Classes --- */
+        /* --- Reveal Animations --- */
         .reveal-item {
             opacity: 0;
             transform: translateY(30px);
@@ -254,7 +334,7 @@
             transform: translateY(0);
         }
 
-        /* --- Statistics Counter Grid --- */
+        /* --- Stat Counters --- */
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -274,18 +354,22 @@
             border-radius: var(--border-radius);
             padding: 24px 16px;
             text-align: center;
-            transition: transform var(--transition-speed), border-color var(--transition-speed);
+            box-shadow: 0 4px 12px var(--shadow-color);
+            transition: transform var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed), background-color var(--transition-speed);
         }
 
         .stat-card:hover {
             transform: translateY(-4px);
-            border-color: var(--accent-blue);
+            border-color: var(--accent-primary);
+            box-shadow: 0 8px 20px rgba(255, 107, 74, 0.15);
         }
 
         .stat-number {
             font-size: 2.25rem;
             font-weight: 800;
-            color: var(--accent-blue);
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin-bottom: 4px;
         }
 
@@ -297,7 +381,7 @@
             font-weight: 600;
         }
 
-        /* --- Typographic Section Structure --- */
+        /* --- Typography & Section Design --- */
         section {
             margin-bottom: 60px;
         }
@@ -318,14 +402,14 @@
             display: inline-block;
             width: 4px;
             height: 24px;
-            background-color: var(--accent-blue);
+            background: var(--accent-gradient);
             border-radius: 2px;
         }
 
-        .blue-line {
+        .accent-line {
             width: 50px;
             height: 4px;
-            background-color: var(--accent-blue);
+            background: var(--accent-gradient);
             margin: 0 0 16px 0;
             border-radius: 2px;
         }
@@ -360,19 +444,21 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            transition: transform var(--transition-speed), border-color var(--transition-speed);
+            box-shadow: 0 4px 12px var(--shadow-color);
+            transition: transform var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed), background-color var(--transition-speed);
         }
 
         .service-card:hover {
             transform: translateY(-4px);
-            border-color: var(--accent-blue);
+            border-color: var(--accent-primary);
+            box-shadow: 0 8px 24px rgba(255, 107, 74, 0.15);
         }
 
         .service-icon {
             font-size: 1.35rem;
-            color: var(--accent-blue);
+            color: var(--accent-primary);
             margin-bottom: 18px;
-            background: rgba(37, 99, 235, 0.12);
+            background: var(--tag-bg);
             width: 48px;
             height: 48px;
             display: flex;
@@ -402,7 +488,7 @@
 
         .meta-tag {
             font-size: 0.75rem;
-            background: #1e293b;
+            background: var(--tag-bg);
             color: var(--text-main);
             padding: 4px 10px;
             border-radius: 4px;
@@ -410,7 +496,7 @@
             border: 1px solid var(--border-color);
         }
 
-        /* --- Features & Trust Grid --- */
+        /* --- Feature Trust Section --- */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -419,13 +505,15 @@
         }
 
         .feature-item {
-            background: linear-gradient(145deg, var(--bg-secondary) 0%, rgba(22,27,38,0.5) 100%);
-            border-left: 4px solid var(--accent-blue);
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent-primary);
             padding: 24px;
             border-radius: 0 var(--border-radius) var(--border-radius) 0;
             border-top: 1px solid var(--border-color);
             border-right: 1px solid var(--border-color);
             border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px var(--shadow-color);
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
         }
 
         .feature-item h4 {
@@ -440,15 +528,7 @@
             line-height: 1.55;
         }
 
-        .gallery-caption {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-top: 20px;
-            font-style: italic;
-        }
-
-        /* --- Gallery Showcase --- */
+        /* --- Gallery Section --- */
         .gallery {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -462,13 +542,14 @@
             border: 1px solid var(--border-color);
             background-color: var(--bg-secondary);
             aspect-ratio: 4 / 3;
+            box-shadow: 0 4px 12px var(--shadow-color);
             transition: transform var(--transition-speed), border-color var(--transition-speed), box-shadow var(--transition-speed);
         }
 
         .gallery-item:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
-            border-color: var(--accent-blue);
+            box-shadow: 0 12px 24px var(--shadow-color);
+            border-color: var(--accent-primary);
         }
 
         .gallery-item img {
@@ -485,7 +566,7 @@
         }
 
         .team-gallery .gallery-item img {
-            filter: grayscale(100%);
+            filter: grayscale(80%);
             transition: filter 0.5s ease-in-out, transform 0.5s ease;
         }
 
@@ -494,7 +575,15 @@
             transform: scale(1.04);
         }
 
-        /* --- Testimonials Carousel --- */
+        .gallery-caption {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        /* --- Testimonials Slider --- */
         .testimonial-slider-container {
             position: relative;
             background-color: var(--bg-secondary);
@@ -504,6 +593,8 @@
             max-width: 750px;
             margin: 0 auto;
             overflow: hidden;
+            box-shadow: 0 4px 16px var(--shadow-color);
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
         }
 
         .testimonial-track {
@@ -552,7 +643,7 @@
         }
 
         .slider-arrow {
-            background: var(--bg-primary);
+            background: var(--tag-bg);
             border: 1px solid var(--border-color);
             color: var(--text-main);
             width: 40px;
@@ -562,12 +653,13 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: background var(--transition-speed), border-color var(--transition-speed);
+            transition: background var(--transition-speed), border-color var(--transition-speed), color var(--transition-speed);
         }
 
         .slider-arrow:hover {
-            background: var(--accent-blue);
-            border-color: var(--accent-blue);
+            background: var(--accent-primary);
+            border-color: var(--accent-primary);
+            color: white;
         }
 
         .slider-dots {
@@ -586,12 +678,12 @@
         }
 
         .dot.active {
-            background: var(--accent-blue);
+            background: var(--accent-primary);
             width: 22px;
             border-radius: 4px;
         }
 
-        /* --- Quote Form --- */
+        /* --- Quote Form Card --- */
         .form-wrapper {
             background-color: var(--bg-secondary);
             border: 1px solid var(--border-color);
@@ -599,6 +691,8 @@
             border-radius: var(--border-radius);
             max-width: 700px;
             margin: 0 auto;
+            box-shadow: 0 8px 24px var(--shadow-color);
+            transition: background-color var(--transition-speed), border-color var(--transition-speed);
         }
 
         form label {
@@ -617,17 +711,17 @@
             width: 100%;
             padding: 12px 16px;
             border: 1px solid var(--border-color);
-            background-color: var(--bg-primary);
+            background-color: var(--bg-card);
             color: var(--text-main);
             border-radius: 6px;
             font-size: 0.95rem;
             font-family: inherit;
-            transition: border-color var(--transition-speed), box-shadow var(--transition-speed);
+            transition: border-color var(--transition-speed), box-shadow var(--transition-speed), background-color var(--transition-speed), color var(--transition-speed);
         }
 
         input:focus-visible, textarea:focus-visible {
-            border-color: var(--accent-blue);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 74, 0.2);
             outline: none;
         }
 
@@ -657,31 +751,35 @@
         }
 
         .btn-primary {
-            background-color: var(--accent-blue);
+            background: var(--accent-gradient);
             color: white;
             width: 100%;
+            box-shadow: 0 4px 15px rgba(255, 107, 74, 0.3);
         }
 
         .btn-primary:hover {
-            background-color: var(--accent-glow);
+            opacity: 0.95;
+            box-shadow: 0 6px 20px rgba(255, 107, 74, 0.4);
         }
 
         .btn-primary:disabled {
-            background-color: #1e293b;
-            color: #64748b;
+            background: #64748b;
+            color: #cbd5e1;
             cursor: not-allowed;
             border: 1px solid var(--border-color);
             transform: none;
+            box-shadow: none;
         }
 
         .btn-outline {
-            background-color: transparent;
+            background-color: var(--bg-card);
             border: 1px solid var(--border-color);
             color: var(--text-main);
         }
 
         .btn-outline:hover {
-            background-color: var(--border-color);
+            background-color: var(--tag-bg);
+            border-color: var(--accent-primary);
         }
 
         .btn-tiktok {
@@ -713,7 +811,7 @@
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
             z-index: 999;
             display: flex;
             align-items: center;
@@ -783,7 +881,13 @@
         <a href="#" class="brand-logo" aria-label="Tede Projects Home">
             <img src="https://i.ibb.co/rfyjYkq0/1779159012884.png" alt="TEDE Projects Logo" class="navbar-logo">
         </a>
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+        <div class="nav-actions">
+            <!-- Theme Dynamic Toggle Button -->
+            <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Toggle Sunset Theme">
+                <i class="fas fa-sun" id="themeIcon"></i>
+            </button>
+            <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+        </div>
     </nav>
 
     <!-- Header / Hero Section -->
@@ -793,7 +897,7 @@
         </h1>
         
         <p class="header-slogan">
-            From modern renovation layouts and quality finishes to precision craftsmanship — we deliver clean workmanship, on time, every time.
+            From modern house renovation layouts and precision tile installation to structural building — we deliver clean workmanship, on time, every time.
         </p>
 
         <div class="hero-buttons">
@@ -829,18 +933,18 @@
     <!-- About Us Section -->
     <section id="about" class="reveal-item">
         <h2 class="section-title">About Us</h2>
-        <p class="section-desc"><strong>Tede Projects</strong> is a professional home and office renovation company. We merge structural renovation with high-end interior design and rigorous quality control to ensure your spaces are modern, beautiful, and valuable. From minor updates to full property improvements, we handle every job with clean, expert workmanship.</p>
+        <p class="section-desc"><strong>Tede Projects</strong> is a professional home and office renovation company. We merge structural renovation with high-end interior tile design and rigorous quality control to ensure your houses are modern, bright, and valuable. From minor updates to full property improvements, we handle every job with clean, expert workmanship.</p>
     </section>
 
     <!-- Why Choose Us Section -->
     <section>
         <h2 class="section-title reveal-item">Why Choose Tede Projects</h2>
-        <p class="section-desc reveal-item">We make your design and renovation journey easy and stress-free through uncompromising quality.</p>
+        <p class="section-desc reveal-item">We make your home design and tile renovation journey easy and stress-free through uncompromising quality.</p>
         
         <div class="features-grid">
             <div class="feature-item reveal-item">
                 <h4>Unmatched Quality</h4>
-                <p>Every tile we lay and every wall we paint goes through strict quality checks to ensure flawless results.</p>
+                <p>Every tile we lay and every house wall we paint goes through strict quality checks to ensure flawless results.</p>
             </div>
             <div class="feature-item reveal-item">
                 <h4>Smart Design & Budgets</h4>
@@ -848,7 +952,7 @@
             </div>
             <div class="feature-item reveal-item">
                 <h4>Local Renovation Experts</h4>
-                <p>We use the best local materials and modern renovation standards tailored specifically for South African homes.</p>
+                <p>We use the best local materials and modern renovation standards tailored specifically for South African houses.</p>
             </div>
         </div>
     </section>
@@ -858,15 +962,15 @@
     <!-- Our Services Section -->
     <section id="services">
         <h2 class="section-title reveal-item">Our Services</h2>
-        <div class="blue-line reveal-item"></div>
-        <p class="section-desc reveal-item">We offer a wide range of expert building, design, and renovation services for your property:</p>
+        <div class="accent-line reveal-item"></div>
+        <p class="section-desc reveal-item">We offer a wide range of expert building, tile layout, design, and renovation services for your house:</p>
         
         <div class="services-grid">
             <div class="service-card reveal-item">
                 <div>
                     <div class="service-icon"><i class="fas fa-th"></i></div>
                     <h3>Tiling</h3>
-                    <p>Perfect wall and floor tiling combining precision design and quality materials for neat lines and strong finishes.</p>
+                    <p>Perfect wall and floor tiling combining precision design and quality tile materials for neat lines and strong finishes.</p>
                 </div>
                 <div class="service-meta">
                     <span class="meta-tag">1 - 5 days</span>
@@ -877,7 +981,7 @@
                 <div>
                     <div class="service-icon"><i class="fas fa-paint-roller"></i></div>
                     <h3>Painting</h3>
-                    <p>Neat interior and exterior painting services executed with high quality paints to elevate your home design.</p>
+                    <p>Neat interior and exterior house painting services executed with high quality paints to elevate your home design.</p>
                 </div>
                 <div class="service-meta">
                     <span class="meta-tag">2 - 7 days</span>
@@ -888,7 +992,7 @@
                 <div>
                     <div class="service-icon"><i class="fas fa-layer-group"></i></div>
                     <h3>Ceilings</h3>
-                    <p>Modern ceiling board installations, structural level repairs, and custom drop-ceilings for advanced room design.</p>
+                    <p>Modern ceiling board installations, structural level repairs, and custom drop-ceilings for advanced house design.</p>
                 </div>
                 <div class="service-meta">
                     <span class="meta-tag">1 - 4 days</span>
@@ -899,7 +1003,7 @@
                 <div>
                     <div class="service-icon"><i class="fas fa-tint"></i></div>
                     <h3>Rhinoliting</h3>
-                    <p>Professional plastering delivering glass-smooth surfaces designed to optimize your renovation finish.</p>
+                    <p>Professional plastering delivering glass-smooth surfaces designed to optimize your house renovation finish.</p>
                 </div>
                 <div class="service-meta">
                     <span class="meta-tag">1 - 3 days</span>
@@ -910,7 +1014,7 @@
                 <div>
                     <div class="service-icon"><i class="fas fa-road"></i></div>
                     <h3>Paving</h3>
-                    <p>Strong paving installations for driveways and courtyards, marrying exterior durability with aesthetic design.</p>
+                    <p>Strong paving installations for house driveways and courtyards, marrying exterior durability with aesthetic design.</p>
                 </div>
                 <div class="service-meta">
                     <span class="meta-tag">2 - 6 days</span>
@@ -921,7 +1025,7 @@
                 <div>
                     <div class="service-icon"><i class="fas fa-columns"></i></div>
                     <h3>Dry Walling</h3>
-                    <p>Quick and neat interior room divisions and office partitioning tailored to flexible spatial design.</p>
+                    <p>Quick and neat interior house divisions and office partitioning tailored to flexible spatial design.</p>
                 </div>
                 <div class="service-meta">
                     <span class="meta-tag">1 - 3 days</span>
@@ -932,7 +1036,7 @@
                 <div>
                     <div class="service-icon"><i class="fas fa-hammer"></i></div>
                     <h3>Wooden Floors</h3>
-                    <p>Premium laminate and solid wood floor installations engineered for lasting quality and superior room style.</p>
+                    <p>Premium laminate and solid wood floor installations engineered for lasting quality and superior house style.</p>
                 </div>
                 <div class="service-meta">
                     <span class="meta-tag">1 - 4 days</span>
@@ -947,16 +1051,16 @@
     <section id="gallery">
         <h2 class="section-title reveal-item">Completed Work</h2>
         <div class="gallery">
-            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/jvrz94SM/IMG-20240217-183556.jpg" alt="Renovation Work" loading="lazy"></div>
-            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/hJRx8wT8/IMG-20231218-120354.jpg" alt="Renovation Work" loading="lazy"></div>
-            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/zVKJw5Rr/IMG-20241204-WA0123.jpg" alt="Tiling Work" loading="lazy"></div>
+            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/zVKJw5Rr/IMG-20241204-WA0123.jpg" alt="Precision Tiling Work" loading="lazy"></div>
+            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/jvrz94SM/IMG-20240217-183556.jpg" alt="House Renovation Work" loading="lazy"></div>
+            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/hJRx8wT8/IMG-20231218-120354.jpg" alt="Modern House Design" loading="lazy"></div>
             <div class="gallery-item reveal-item"><img src="https://i.ibb.co/6cwpWVZx/IMG-20241204-WA0125.jpg" alt="Renovation Work" loading="lazy"></div>
-            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/HLbJ0K4c/IMG-20241204-WA0127.jpg" alt="Interior Work" loading="lazy"></div>
+            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/HLbJ0K4c/IMG-20241204-WA0127.jpg" alt="Interior House Work" loading="lazy"></div>
             <div class="gallery-item reveal-item"><img src="https://i.ibb.co/pBXnKZdy/IMG-20230612-161912.jpg" alt="Property Upgrades" loading="lazy"></div>
-            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/xKbsk73P/IMG-20230406-140413.jpg" alt="Remodel Work" loading="lazy"></div>
-            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/gLTXV8Sx/IMG-20230406-140345.jpg" alt="Complete Renovation" loading="lazy"></div>
+            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/xKbsk73P/IMG-20230406-140413.jpg" alt="House Remodel Work" loading="lazy"></div>
+            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/gLTXV8Sx/IMG-20230406-140345.jpg" alt="Complete House Renovation" loading="lazy"></div>
         </div>
-        <p class="gallery-caption reveal-item">Real examples showcasing our dedication to design, quality, and renovation excellence.</p>
+        <p class="gallery-caption reveal-item">Real examples showcasing our dedication to house design, quality tiles, and renovation excellence.</p>
     </section>
 
     <!-- Operational Action Shots Section -->
@@ -965,7 +1069,7 @@
         <p class="section-desc reveal-item">Hover over any photo to see it in full color.</p>
         <div class="gallery team-gallery">
             <div class="gallery-item reveal-item"><img src="https://i.ibb.co/bRQ8bqqV/IMG-20230726-WA0147.jpg" alt="Active Work Site" loading="lazy"></div>
-            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/SwSTS7rF/IMG-20240229-141035.jpg" alt="On-Site Development" loading="lazy"></div>
+            <div class="gallery-item reveal-item"><img src="https://i.ibb.co/SwSTS7rF/IMG-20240229-141035.jpg" alt="On-Site House Development" loading="lazy"></div>
             <div class="gallery-item reveal-item"><img src="https://i.ibb.co/mVrN9m1G/IMG-20250103-121146.jpg" alt="Live Renovation" loading="lazy"></div>
             <div class="gallery-item reveal-item"><img src="https://i.ibb.co/kgqwwrnJ/IMG-20240412-112651-1.jpg" alt="On-Site Processing" loading="lazy"></div>
             <div class="gallery-item reveal-item"><img src="https://i.ibb.co/TDkKBHLV/IMG-20240412-104311-1.jpg" alt="Structural Work Phase" loading="lazy"></div>
@@ -978,37 +1082,37 @@
     <!-- Testimonials Slider Section -->
     <section id="reviews" class="reveal-item">
         <h2 class="section-title">What Our Clients Say</h2>
-        <p class="section-desc">Feedback from homeowners and developers on our quality, renovation standards, and design execution.</p>
+        <p class="section-desc">Feedback from homeowners and developers on our quality, house renovation standards, and tile design execution.</p>
         
         <div class="testimonial-slider-container">
             <div class="testimonial-track" id="testimonialTrack">
                 <div class="testimonial-card">
                     <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="testimonial-quote">"We've used Tede on multiple units now. Their renovation standards and quality of finish are consistently top tier."</p>
+                    <p class="testimonial-quote">"We've used Tede on multiple house units now. Their renovation standards and quality of finish are consistently top tier."</p>
                     <div class="testimonial-author">Thandi Mokoena</div>
                     <div class="testimonial-role">Property Developer, Pretoria</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="testimonial-quote">"The driveway design and paving quality exceeded expectations. Solid workmanship and proper drainage."</p>
+                    <p class="testimonial-quote">"The driveway design and paving quality exceeded expectations. Solid workmanship for our house."</p>
                     <div class="testimonial-author">Riaan van der Merwe</div>
                     <div class="testimonial-role">Homeowner, Centurion</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="testimonial-quote">"Office partitioning and dry walling execution matched our interior design layout precisely. Clean and professional."</p>
+                    <p class="testimonial-quote">"Office partitioning and dry walling execution matched our interior house design layout precisely. Clean and professional."</p>
                     <div class="testimonial-author">Nomsa Khumalo</div>
                     <div class="testimonial-role">Estate Manager, Midrand</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="testimonial-quote">"Our wooden floors look incredible. The level of quality and design detail put into the installation is clear."</p>
+                    <p class="testimonial-quote">"Our house floor tiles and wooden floors look incredible. The level of quality and design detail put into the installation is clear."</p>
                     <div class="testimonial-author">Pieter Botha</div>
                     <div class="testimonial-role">Homeowner, Sandton</div>
                 </div>
                 <div class="testimonial-card">
                     <div class="testimonial-stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-                    <p class="testimonial-quote">"Tede Projects completely transformed our home through exceptional renovation, quality tiling, and sleek design."</p>
+                    <p class="testimonial-quote">"Tede Projects completely transformed our house through exceptional renovation, quality tiling, and sleek design."</p>
                     <div class="testimonial-author">Sipho Dlamini</div>
                     <div class="testimonial-role">Homeowner, Johannesburg</div>
                 </div>
@@ -1032,7 +1136,7 @@
     <section id="quote" class="reveal-item">
         <div class="form-wrapper">
             <h2 class="section-title">Get A Free Quote</h2>
-            <p class="section-desc">Fill in the form to discuss your design, quality requirements, or renovation project.</p>
+            <p class="section-desc">Fill in the form to discuss your house design, tile requirements, or renovation project.</p>
             <form id="quoteForm" action="https://api.web3forms.com/submit" method="POST">
                 <input type="hidden" name="access_key" value="c62eaa0c-24d9-4543-83f2-3b84abb3e5ba">
                 <input type="hidden" name="_to" value="collentede84@gmail.com">
@@ -1049,12 +1153,12 @@
 
                 <div class="form-group">
                     <label for="service">Service You Need</label>
-                    <input type="text" id="service" name="service" placeholder="e.g. Renovation, Quality Tiling, Interior Design">
+                    <input type="text" id="service" name="service" placeholder="e.g. House Renovation, Quality Tiling, Interior Design">
                 </div>
 
                 <div class="form-group">
                     <label for="message">Project Details</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Tell us about your project design goals, quality needs, or timeline..." required></textarea>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us about your house design goals, tile preferences, quality needs, or timeline..." required></textarea>
                 </div>
 
                 <button type="submit" id="submitBtn" class="btn btn-primary"><i class="fas fa-paper-plane"></i> Submit Quote Request</button>
@@ -1082,13 +1186,35 @@
     <hr>
     <!-- Footer -->
     <footer class="footer" style="text-align: center; padding-top: 10px; padding-bottom: 20px;">
-        <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 Tede Projects & Renovations. Website built by Elham Studios.</p>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 Tede Projects & Renovations. Website built by ElhamCodes.</p>
     </footer>
 </div>
 
 <!-- Script Engine -->
 <script>
     document.addEventListener("DOMContentLoaded", () => {
+        // --- Theme Toggle Engine (Sunset Dark <-> Sunset Light) ---
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+
+        const updateThemeIcon = (theme) => {
+            if (theme === 'dark') {
+                themeIcon.className = 'fas fa-sun';
+            } else {
+                themeIcon.className = 'fas fa-moon';
+            }
+        };
+
+        if (themeToggleBtn) {
+            themeToggleBtn.addEventListener('click', () => {
+                const currentTheme = htmlElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                htmlElement.setAttribute('data-theme', newTheme);
+                updateThemeIcon(newTheme);
+            });
+        }
+
         // --- Drawer Navigation Engine ---
         const menuToggle = document.getElementById('menuToggle');
         const mobileDrawer = document.getElementById('mobileDrawer');
@@ -1131,7 +1257,7 @@
         // --- Header Keyword Rotator ---
         const rotatingHeader = document.getElementById('rotatingHeader');
         if (rotatingHeader) {
-            const terms = ["Uncompromising Quality", "Modern Design", "Expert Renovation"];
+            const terms = ["Uncompromising Quality", "Modern Tile Design", "House Renovations"];
             let termIndex = 0;
             rotatingHeader.style.transition = "opacity 0.3s ease-in-out";
             setInterval(() => {
